@@ -13,7 +13,9 @@
       "carousel",
       "columns",
       "contentfragment",
+      "dm-asset",
       "dm-template",
+      "fragment",
       "hero",
       "image",
       "teaser",
@@ -21,8 +23,9 @@
       "title",
       "video",
       "separator",
-      "form"
-  ]
+      "form",
+      "embed-adaptive-form"
+    ]
   },
   {
     "id": "cards",
@@ -46,6 +49,7 @@
     "id": "column",
     "components": [
       "button",
+      "dm-asset",
       "dm-template",
       "image",
       "text",      
@@ -80,7 +84,8 @@
       "telephone-input",
       "text-input",
       "tnc",
-      "wizard"
+      "wizard",
+      "range"
     ]
   }
 ]
