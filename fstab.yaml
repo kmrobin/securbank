@@ -1,6 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p157943-e1740770.adobeaemcloud.com/bin/franklin.delivery/kmrobin/securbank/main"
-
+    url: "https://author-p159983-e1710854.adobeaemcloud.com/bin/franklin.delivery/AEMXSC/wknd-dev/main"
     type: "markup"
     suffix: ".html"
