@@ -6,17 +6,32 @@
   padding: 0;
 }
 
-/* Alignment classes for the block container */
-.title-block.text-left {
-  text-align: left;
+/* Direct alignment classes for title elements - HIGH PRIORITY */
+h1[data-aue-model="title"].text-left,
+h2[data-aue-model="title"].text-left,
+h3[data-aue-model="title"].text-left,
+h4[data-aue-model="title"].text-left,
+h5[data-aue-model="title"].text-left,
+h6[data-aue-model="title"].text-left {
+  text-align: left !important;
 }
 
-.title-block.text-center {
-  text-align: center;
+h1[data-aue-model="title"].text-center,
+h2[data-aue-model="title"].text-center,
+h3[data-aue-model="title"].text-center,
+h4[data-aue-model="title"].text-center,
+h5[data-aue-model="title"].text-center,
+h6[data-aue-model="title"].text-center {
+  text-align: center !important;
 }
 
-.title-block.text-right {
-  text-align: right;
+h1[data-aue-model="title"].text-right,
+h2[data-aue-model="title"].text-right,
+h3[data-aue-model="title"].text-right,
+h4[data-aue-model="title"].text-right,
+h5[data-aue-model="title"].text-right,
+h6[data-aue-model="title"].text-right {
+  text-align: right !important;
 }
 
 /* Title element specific alignment - target AEM title elements */
@@ -28,50 +43,16 @@
 .title-block h6[data-aue-model="title"] {
   margin: 0;
   padding: 0;
-  /* Inherit text alignment from parent */
-  text-align: inherit;
-}
-
-/* Direct alignment classes for title elements */
-h1[data-aue-model="title"].text-left,
-h2[data-aue-model="title"].text-left,
-h3[data-aue-model="title"].text-left,
-h4[data-aue-model="title"].text-left,
-h5[data-aue-model="title"].text-left,
-h6[data-aue-model="title"].text-left {
-  text-align: left;
-}
-
-h1[data-aue-model="title"].text-center,
-h2[data-aue-model="title"].text-center,
-h3[data-aue-model="title"].text-center,
-h4[data-aue-model="title"].text-center,
-h5[data-aue-model="title"].text-center,
-h6[data-aue-model="title"].text-center {
-  text-align: center;
-}
-
-h1[data-aue-model="title"].text-right,
-h2[data-aue-model="title"].text-right,
-h3[data-aue-model="title"].text-right,
-h4[data-aue-model="title"].text-right,
-h5[data-aue-model="title"].text-right,
-h6[data-aue-model="title"].text-right {
-  text-align: right;
 }
 
 /* Responsive alignment adjustments */
 @media (max-width: 768px) {
-  .title-block.text-right {
-    text-align: center; /* Center on mobile for better readability */
-  }
-  
   h1[data-aue-model="title"].text-right,
   h2[data-aue-model="title"].text-right,
   h3[data-aue-model="title"].text-right,
   h4[data-aue-model="title"].text-right,
   h5[data-aue-model="title"].text-right,
   h6[data-aue-model="title"].text-right {
-    text-align: center; /* Center on mobile for better readability */
+    text-align: center !important; /* Center on mobile for better readability */
   }
 }

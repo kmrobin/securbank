@@ -5,52 +5,81 @@ import { readBlockConfig } from '../../scripts/aem.js';
  * @param {Element} block The title block element
  */
 export default function decorate(block) {
-  // Try to read alignment from DOM elements first (like hero block does)
-  let alignment = 'text-left'; // Default to left alignment
+  console.log('Title block decorate called for:', block);
   
-  // Look for alignment configuration in the block content
-  const alignmentElement = block.querySelector('p[data-aue-prop="titleAlignment"] div');
-  if (alignmentElement) {
-    const alignmentValue = alignmentElement.textContent?.trim();
-    if (alignmentValue && ['text-left', 'text-center', 'text-right'].includes(alignmentValue)) {
-      alignment = alignmentValue;
-    }
-  }
-  
-  // Fallback to readBlockConfig if DOM method doesn't work
-  if (alignment === 'text-left') {
-    const config = readBlockConfig(block);
-    console.log('Title block config:', config);
-    if (config?.titleAlignment) {
-      alignment = config.titleAlignment;
-    }
-  }
-  
-  console.log('Using alignment:', alignment);
-  
-  // Apply alignment to the block container first
-  block.classList.add(alignment);
+  // Add title-block class to the block
   block.classList.add('title-block');
   
-  // Find the title element (h1, h2, h3, etc.) with AEM data attributes
-  const titleElement = block.querySelector('h1[data-aue-model="title"], h2[data-aue-model="title"], h3[data-aue-model="title"], h4[data-aue-model="title"], h5[data-aue-model="title"], h6[data-aue-model="title"]');
+  // Function to apply alignment to title elements
+  function applyAlignmentToTitleElements(alignment) {
+    // Find all title elements (h1, h2, h3, etc.) with AEM data attributes
+    const titleElements = block.querySelectorAll('h1[data-aue-model="title"], h2[data-aue-model="title"], h3[data-aue-model="title"], h4[data-aue-model="title"], h5[data-aue-model="title"], h6[data-aue-model="title"]');
+    
+    titleElements.forEach(titleElement => {
+      // Remove any existing alignment classes
+      titleElement.classList.remove('text-left', 'text-center', 'text-right');
+      // Add the new alignment class
+      titleElement.classList.add(alignment);
+      console.log('Applied alignment:', alignment, 'to title element:', titleElement);
+    });
+    
+    return titleElements.length > 0;
+  }
   
-  if (titleElement) {
-    // Apply the alignment class to the title element
-    titleElement.classList.add(alignment);
-    console.log('Applied alignment:', alignment, 'to title element:', titleElement);
-  } else {
-    console.log('No title element found yet - will apply when content is added');
+  // Function to read alignment from configuration
+  function getAlignmentFromConfig() {
+    // Method 1: Try to read from DOM elements (like hero block)
+    const alignmentElement = block.querySelector('p[data-aue-prop="titleAlignment"] div');
+    if (alignmentElement) {
+      const alignmentValue = alignmentElement.textContent?.trim();
+      console.log('Found alignment in DOM:', alignmentValue);
+      if (alignmentValue && ['text-left', 'text-center', 'text-right'].includes(alignmentValue)) {
+        return alignmentValue;
+      }
+    }
+    
+    // Method 2: Try readBlockConfig
+    try {
+      const config = readBlockConfig(block);
+      console.log('Title block config from readBlockConfig:', config);
+      if (config && config.titleAlignment) {
+        return config.titleAlignment;
+      }
+    } catch (error) {
+      console.log('Error reading block config:', error);
+    }
+    
+    // Method 3: Look for alignment in any div within the block
+    const allDivs = block.querySelectorAll('div');
+    for (const div of allDivs) {
+      const text = div.textContent?.trim();
+      if (text && ['text-left', 'text-center', 'text-right'].includes(text)) {
+        console.log('Found alignment in div:', text);
+        return text;
+      }
+    }
+    
+    return 'text-left'; // Default
+  }
+  
+  // Get alignment and apply it
+  const alignment = getAlignmentFromConfig();
+  console.log('Final alignment to apply:', alignment);
+  
+  // Apply alignment to existing title elements
+  const hasTitleElements = applyAlignmentToTitleElements(alignment);
+  
+  if (!hasTitleElements) {
+    console.log('No title elements found yet - setting up observer');
     
     // Set up a mutation observer to watch for when title elements are added
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') {
-          const titleElement = block.querySelector('h1[data-aue-model="title"], h2[data-aue-model="title"], h3[data-aue-model="title"], h4[data-aue-model="title"], h5[data-aue-model="title"], h6[data-aue-model="title"]');
-          if (titleElement) {
-            titleElement.classList.add(alignment);
-            console.log('Applied alignment to newly added title element:', titleElement);
-            observer.disconnect(); // Stop observing once we've applied the alignment
+          const hasElements = applyAlignmentToTitleElements(alignment);
+          if (hasElements) {
+            console.log('Applied alignment to newly added title elements');
+            observer.disconnect();
           }
         }
       });
@@ -60,9 +89,11 @@ export default function decorate(block) {
     observer.observe(block, { childList: true, subtree: true });
   }
   
-  // Hide the alignment configuration paragraph if it exists
-  const alignmentParagraph = block.querySelector('p[data-aue-prop="titleAlignment"]');
-  if (alignmentParagraph) {
-    alignmentParagraph.style.display = 'none';
-  }
+  // Hide configuration elements
+  const configElements = block.querySelectorAll('p[data-aue-prop="titleAlignment"], div:has-text("text-left"), div:has-text("text-center"), div:has-text("text-right")');
+  configElements.forEach(element => {
+    if (element.textContent?.trim() && ['text-left', 'text-center', 'text-right'].includes(element.textContent.trim())) {
+      element.style.display = 'none';
+    }
+  });
 }
