@@ -1,0 +1,38 @@
+/* Title Block Alignment Styles */
+
+/* Base title block styles */
+.title {
+  margin: 0;
+  padding: 0;
+}
+
+/* Alignment classes */
+.title.text-left {
+  text-align: left;
+}
+
+.title.text-center {
+  text-align: center;
+}
+
+.title.text-right {
+  text-align: right;
+}
+
+/* Title element specific alignment */
+.title h1,
+.title h2,
+.title h3,
+.title h4,
+.title h5,
+.title h6 {
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive alignment adjustments */
+@media (max-width: 768px) {
+  .title.text-right {
+    text-align: center; /* Center on mobile for better readability */
+  }
+}
