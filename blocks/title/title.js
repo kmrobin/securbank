@@ -90,10 +90,12 @@ export default function decorate(block) {
   }
   
   // Hide configuration elements
-  const configElements = block.querySelectorAll('p[data-aue-prop="titleAlignment"], div:has-text("text-left"), div:has-text("text-center"), div:has-text("text-right")');
-  configElements.forEach(element => {
-    if (element.textContent?.trim() && ['text-left', 'text-center', 'text-right'].includes(element.textContent.trim())) {
+  const allElements = block.querySelectorAll('p[data-aue-prop="titleAlignment"], div');
+  allElements.forEach(element => {
+    const text = element.textContent?.trim();
+    if (text && ['text-left', 'text-center', 'text-right'].includes(text)) {
       element.style.display = 'none';
+      console.log('Hidden configuration element:', element);
     }
   });
 }
