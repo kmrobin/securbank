@@ -1,38 +1,77 @@
 /* Title Block Alignment Styles */
 
 /* Base title block styles */
-.title {
+.title-block {
   margin: 0;
   padding: 0;
 }
 
-/* Alignment classes */
-.title.text-left {
+/* Alignment classes for the block container */
+.title-block.text-left {
   text-align: left;
 }
 
-.title.text-center {
+.title-block.text-center {
   text-align: center;
 }
 
-.title.text-right {
+.title-block.text-right {
   text-align: right;
 }
 
-/* Title element specific alignment */
-.title h1,
-.title h2,
-.title h3,
-.title h4,
-.title h5,
-.title h6 {
+/* Title element specific alignment - target AEM title elements */
+.title-block h1[data-aue-model="title"],
+.title-block h2[data-aue-model="title"],
+.title-block h3[data-aue-model="title"],
+.title-block h4[data-aue-model="title"],
+.title-block h5[data-aue-model="title"],
+.title-block h6[data-aue-model="title"] {
   margin: 0;
   padding: 0;
+  /* Inherit text alignment from parent */
+  text-align: inherit;
+}
+
+/* Direct alignment classes for title elements */
+h1[data-aue-model="title"].text-left,
+h2[data-aue-model="title"].text-left,
+h3[data-aue-model="title"].text-left,
+h4[data-aue-model="title"].text-left,
+h5[data-aue-model="title"].text-left,
+h6[data-aue-model="title"].text-left {
+  text-align: left;
+}
+
+h1[data-aue-model="title"].text-center,
+h2[data-aue-model="title"].text-center,
+h3[data-aue-model="title"].text-center,
+h4[data-aue-model="title"].text-center,
+h5[data-aue-model="title"].text-center,
+h6[data-aue-model="title"].text-center {
+  text-align: center;
+}
+
+h1[data-aue-model="title"].text-right,
+h2[data-aue-model="title"].text-right,
+h3[data-aue-model="title"].text-right,
+h4[data-aue-model="title"].text-right,
+h5[data-aue-model="title"].text-right,
+h6[data-aue-model="title"].text-right {
+  text-align: right;
 }
 
 /* Responsive alignment adjustments */
 @media (max-width: 768px) {
-  .title.text-right {
+  .title-block.text-right {
+    text-align: center; /* Center on mobile for better readability */
+  }
+  
+  h1[data-aue-model="title"].text-right,
+  h2[data-aue-model="title"].text-right,
+  h3[data-aue-model="title"].text-right,
+  h4[data-aue-model="title"].text-right,
+  h5[data-aue-model="title"].text-right,
+  h6[data-aue-model="title"].text-right {
     text-align: center; /* Center on mobile for better readability */
   }
 }
