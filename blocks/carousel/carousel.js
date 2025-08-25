@@ -15,34 +15,61 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     if (i > 3) {
       const li = document.createElement('li');
-      const styleParagraph = row.querySelector('p[data-aue-prop="style"]');
+      
+      // Read card style from the third div (index 2)
+      const styleDiv = row.children[2];
+      const styleParagraph = styleDiv?.querySelector('p');
       const cardStyle = styleParagraph?.textContent?.trim() || 'default';
       if (cardStyle && cardStyle !== 'default') {
         li.className = cardStyle;
       }
       
-      const ctaStyleParagraph = row.querySelector('p[data-aue-prop="ctastyle"]');
-      const ctaStyle = ctaStyleParagraph?.textContent?.trim() || 'default';
-
-      
-      if (styleParagraph) {
-        styleParagraph.style.display = 'none';
-      }
-      if (ctaStyleParagraph) {
-        ctaStyleParagraph.style.display = 'none';
-      }
+      // Read CTA style from the fourth div (index 3)
+      const ctaDiv = row.children[3];
+      const ctaParagraph = ctaDiv?.querySelector('p');
+      const ctaStyle = ctaParagraph?.textContent?.trim() || 'default';
 
       moveInstrumentation(row, li);
       while (row.firstElementChild) li.append(row.firstElementChild);
-      [...li.children].forEach((div) => {
-        if (div.querySelector('p[data-aue-prop="style"]') || div.querySelector('p[data-aue-prop="ctastyle"]')) div.className = 'cards-config';
-        else if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-        else div.className = 'cards-card-body';
+      
+      // Process the li children to identify and style them correctly
+      [...li.children].forEach((div, index) => {
+        // First div (index 0) - Image
+        if (index === 0) {
+          div.className = 'cards-card-image';
+        }
+        // Second div (index 1) - Content with button
+        else if (index === 1) {
+          div.className = 'cards-card-body';
+        }
+        // Third div (index 2) - Card style configuration
+        else if (index === 2) {
+          div.className = 'cards-config';
+          const p = div.querySelector('p');
+          if (p) {
+            p.style.display = 'none'; // Hide the configuration text
+          }
+        }
+        // Fourth div (index 3) - CTA style configuration
+        else if (index === 3) {
+          div.className = 'cards-config';
+          const p = div.querySelector('p');
+          if (p) {
+            p.style.display = 'none'; // Hide the configuration text
+          }
+        }
+        // Any other divs
+        else {
+          div.className = 'cards-card-body';
+        }
       });
       
-      // Apply CTA styles after content has been moved to li
+      // Apply CTA styles to button containers
       const buttonContainers = li.querySelectorAll('p.button-container');
       buttonContainers.forEach(buttonContainer => {
+        // Remove any existing CTA classes
+        buttonContainer.classList.remove('default', 'cta-button', 'cta-button-secondary', 'cta-button-dark', 'cta-default');
+        // Add the correct CTA class
         buttonContainer.classList.add(ctaStyle);
       });
       

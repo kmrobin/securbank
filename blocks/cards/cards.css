@@ -290,13 +290,14 @@
   height: 100%;
   padding: 30px;
   margin: 0;
-  display: inline-flex;
   flex-grow: 1;
   flex-basis: 0;
   align-items: center;
   position: absolute;
   background-color: rgba(0, 0, 0, .5);
   color: var(--text-light);
+  display: block;
+  align-content: center;
 }
 .cards > ul > li.teaser-overlay .cards-card-body div[data-aue-type="richtext"] {
   width: 50%;
@@ -365,6 +366,8 @@
   bottom: 40px;
   left: 0;
   right: 0;
+  display: block;
+    align-content: center;
 }
 .cards > ul > li.teaser-card .cards-card-body p.button-container a {
   color: var(--text-light);

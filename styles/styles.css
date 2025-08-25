@@ -833,12 +833,12 @@ table {
 /* Button styling within */
 .cta-button a.button {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 12px 24px !important;
   margin: 10px 5px;
-  background-color: var(--main-accent-color);
-  color: var(--text-light);
+  background-color: var(--main-accent-color) !important;
+  color: var(--text-light) !important;
   text-decoration: none;
-  border: 2px solid var(--main-accent-color);
+  border: 2px solid var(--main-accent-color) !important;
   border-radius: 4px;
   font-family: var(--heading-font-family);
   font-weight: 600;
@@ -854,22 +854,22 @@ table {
  .cta-button a.button::after {
   content: "\f105";
   font-family: 'Font Awesome 5 Solid';
-  color: var(--text-light);
+  color: var(--text-light) !important;
   font-size: 20px;
   margin-left: 8px;
   transition: all 0.3s ease;
 }
 
 .cta-button a.button:hover {
-  background-color: transparent;
-  color: var(--main-accent-color);
-  border-color: var(--main-accent-color);
+  background-color: transparent !important;
+  color: var(--main-accent-color) !important;
+  border-color: var(--main-accent-color) !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transform: translateY(-1px);
 }
 
  .cta-button a.button:hover::after {
-  color: var(--main-accent-color);
+  color: var(--main-accent-color) !important  ;
   transform: translateX(2px);
 }
 
@@ -885,7 +885,7 @@ table {
 /* Secondary button variant */
 .cta-button-secondary a.button {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 12px 24px !important;
   margin: 10px 5px;
   text-decoration: none;
   border-radius: 4px;
@@ -900,9 +900,9 @@ table {
   position: relative;
   transform: translateY(-1px);
   background-color: transparent;
-  color: var(--main-accent-color);
-  border:2px solid var(--main-accent-color);
-  border-color: var(--main-accent-color);
+  color: var(--main-accent-color)!important;
+  border:2px solid var(--main-accent-color) !important;
+  border-color: var(--main-accent-color) !important;
  
 }
 
@@ -910,21 +910,21 @@ table {
   
     content: "\f105";
     font-family: 'Font Awesome 5 Solid';
-    color: var(--main-accent-color);
+    color: var(--main-accent-color) !important;
     font-size: 20px;
     margin-left: 8px;
     transition: all 0.3s ease;
 }
 
 .cta-button-secondary a.button:hover {
-  background-color: var(--main-accent-color);
-  color: var(--text-light);
+  background-color: var(--main-accent-color)!important;
+  color: var(--text-light) !important;
   
   text-decoration: none;;
 }
 
 .cta-button-secondary a.button:hover::after {
-  color: var(--text-dark);
+  color: var(--text-dark) !important;
   transform: translateX(2px);
 }
 
@@ -934,19 +934,16 @@ table {
   outline-offset: 2px;
 }
 */
-.cta-minimal a.button::after {
-  margin-left: 4px;
-}
 
 /*dark mode*/
 .cta-button-dark a.button {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 12px 24px !important;
   margin: 10px 5px;
-  background-color: var(--text-light);
-  color: var(--dark-color);
+  background-color: var(--text-light) !important;
+  color: var(--dark-color) !important;
   text-decoration: none;
-  border: 2px solid var(--dark-color);
+  border: 2px solid var(--dark-color) !important;
   border-radius: 4px;
   font-family: var(--heading-font-family);
   font-weight: 600;
@@ -962,22 +959,22 @@ table {
  .cta-button-dark a.button::after {
   content: "\f105";
   font-family: 'Font Awesome 5 Solid';
-  color: var(--dark-color);
+  color: var(--dark-color) !important;
   font-size: 20px;
   margin-left: 8px;
   transition: all 0.3s ease;
 }
 
 .cta-button-dark a.button:hover {
-  background-color: var(--dark-color);
-  color: var(--text-light);
-  border-color: var(--dark-color);
+  background-color: var(--dark-color) !important;
+  color: var(--text-light) !important;
+  border-color: var(--dark-color) !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transform: translateY(-1px);
 }
 
  .cta-button-dark a.button:hover::after {
-  color:var(--text-light);
+  color:var(--text-light) !important;
   transform: translateX(2px);
 }
 
