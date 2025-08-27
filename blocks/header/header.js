@@ -526,6 +526,7 @@ export default async function decorate(block) {
     document.addEventListener('click', (e) => {
       closeSearchOnFocusOut(e, navTools);
     });
+    /*
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Tab') {
         if (searchContainer && searchContainer.style.display !== 'none' && searchContainer.contains(e.target)) {
@@ -533,6 +534,7 @@ export default async function decorate(block) {
         }
       }
     });
+    */
   }
   
   // hamburger for mobile
