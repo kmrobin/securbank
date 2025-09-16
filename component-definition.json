@@ -847,6 +847,27 @@
           }
         }
       ]
+    },
+    {
+      "title": "BFSI",
+      "id": "bfsi-components",
+      "components": [
+        {
+          "title": "Foreign Exchange Rates",
+          "id": "forex",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Forex",
+                  "model": "forex"
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }
